@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/user-to-do-lists",
+      "handler": "user-to-do-list.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-to-do-lists/count",
+      "handler": "user-to-do-list.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user-to-do-lists/:id",
+      "handler": "user-to-do-list.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/user-to-do-lists",
+      "handler": "user-to-do-list.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/user-to-do-lists/:id",
+      "handler": "user-to-do-list.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/user-to-do-lists/:id",
+      "handler": "user-to-do-list.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

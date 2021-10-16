@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_to_do_lists",
+  "info": {
+    "name": "UserToDoList",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "todoList": {
+      "type": "json"
+    },
+    "user_id": {
+      "type": "string"
+    }
+  }
+}
