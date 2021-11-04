@@ -59,14 +59,14 @@ const Register:React.FC = () =>{
     onSubmit: async ({username, email, password, repeatPassword}: RegisterInputsValue) =>{
       const postUserToDoList = async () =>{
         await axios
-        .post(`${API_URL}/user-to-do-lists`,
-        { todoList: [], user_id: '' })
+        .post(`${API_URL}/user-todo-lists`,
+        { todoLists: [], user_id: '' })
         .then(async res =>{
           const user = {
             username: username,
             email: email,
             password: password,
-            todoList_id: res.data.id
+            todoLists_id: res.data.id
           }
 
           const registerResponse = await fetch(`${API_URL}/auth/local/register`, {
@@ -90,11 +90,10 @@ const Register:React.FC = () =>{
             }
           }
           catch(err){
-            await axios.put(`${API_URL}/user-to-do-lists/${res.data.id}`,
-            {user_id: registerResponseJSON.user.id})
-            .then(() =>{
-              history.push('/login')
-            })
+            await axios.put(`${API_URL}/user-todo-lists/${res.data.id}`,
+            { user_id: registerResponseJSON.user.id, todoLists: [] },
+            { headers: { Authorization: `Bearer ${registerResponseJSON.jwt}` } })
+            .then(() => history.push('/login'))
           }
         })
         .catch(err => console.log(err))

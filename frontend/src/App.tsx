@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './views/Home'
-import Calendar from './views/Calendar'
+import GoToCalendarTodoListDay from './views/GoToCalendarTodoListDay'
 import CalendarTodo from './views/CalendarTodo'
 import Login from './views/Login'
 import Register from './views/Register'
@@ -15,8 +15,8 @@ const App: React.FC = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/calendar">
-          <Calendar />
+        <Route path="/go-to-calendar-todo-list-day">
+          <GoToCalendarTodoListDay />
         </Route>
         <Route path="/calendary/:calendarDate">
           <CalendarTodo />

@@ -13,20 +13,30 @@ interface Itodo{
   id: string;
 }
 
+interface ItodoList{
+  todoList: Itodo[];
+  user_id: string;
+  date: string;
+}
+
 type Props = {
   id: string,
   todoList: Itodo[],
+  calendarTodoLists: ItodoList[],
+  indexCalendarTodo: number,
   toggleEditTodoLayer: (id: string) => void
 };
 
 const ExampleTodo: React.FC<Props> = ({
   id,
   todoList,
+  calendarTodoLists,
+  indexCalendarTodo,
   toggleEditTodoLayer
 }) =>{
   const cookies = new Cookies();
 
-  const userCookie = cookies.get('user') ? cookies.get('user') : false;
+  const user = cookies.get('user') ? cookies.get('user') : false;
   const jwt = cookies.get('jwt') ? cookies.get('jwt') : false;
 
   const[minDateValue,setMinDateValue] = useState<string>('')
@@ -35,12 +45,19 @@ const ExampleTodo: React.FC<Props> = ({
 
   useLayoutEffect(() =>{
     var today: any = new Date();
-    var dd: string = String(today.getDate()).padStart(2, '0');
-    var mm: string = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
+    var hh: string = String(today.getHours());
+    var min: string = String(today.getMinutes() + 1);
 
-    today = `${yyyy}-${mm}-${dd}`;
-    setMinDateValue(`${today}T00:00`);
+    if(Number(min) < 10){
+      min = `0${min}`
+    }
+    if(min === '60'){
+      hh = String(parseInt(hh) + 1);
+      min = '00';
+    }
+
+    const time = `${hh}:${min}`;
+    setMinDateValue(time);
   }, [])
 
   const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
@@ -68,12 +85,14 @@ const ExampleTodo: React.FC<Props> = ({
       }
 
       const newTodos = todoList;
-
       newTodos[todoIndex] = newTodo;
 
+      const newTodoLists: ItodoList[] = calendarTodoLists;
+      newTodoLists[indexCalendarTodo].todoList = newTodos;
+
       await axios
-      .put(`${API_URL}/users/${userCookie.id}`,
-      { todos: newTodos },
+      .put(`${API_URL}/user-todo-lists/${user.todoList_id}`,
+      { todoLists: newTodoLists },
       { headers: { Authorization: `Bearer ${jwt}` } })
 
       values.body = '';
@@ -110,7 +129,7 @@ const ExampleTodo: React.FC<Props> = ({
           <div className="w-full mt-4 md:ml-2 md:mt-0">
             <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" >Time</label>
             <input
-              type="datetime-local"
+              type="time"
               id="date"
               name="date"
               min={minDateValue}

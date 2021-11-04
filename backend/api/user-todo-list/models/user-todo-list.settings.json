@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "user_to_do_lists",
+  "collectionName": "user_todo_lists",
   "info": {
-    "name": "UserToDoList",
+    "name": "userTodoList",
     "description": ""
   },
   "options": {
@@ -12,11 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "todoList": {
-      "type": "json"
-    },
     "user_id": {
       "type": "string"
+    },
+    "todoLists": {
+      "type": "json"
     }
   }
 }

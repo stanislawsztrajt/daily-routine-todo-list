@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/user-to-do-lists",
-      "handler": "user-to-do-list.find",
+      "path": "/user-todo-lists",
+      "handler": "user-todo-list.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/user-to-do-lists/count",
-      "handler": "user-to-do-list.count",
+      "path": "/user-todo-lists/count",
+      "handler": "user-todo-list.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/user-to-do-lists/:id",
-      "handler": "user-to-do-list.findOne",
+      "path": "/user-todo-lists/:id",
+      "handler": "user-todo-list.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/user-to-do-lists",
-      "handler": "user-to-do-list.create",
+      "path": "/user-todo-lists",
+      "handler": "user-todo-list.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/user-to-do-lists/:id",
-      "handler": "user-to-do-list.update",
+      "path": "/user-todo-lists/:id",
+      "handler": "user-todo-list.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/user-to-do-lists/:id",
-      "handler": "user-to-do-list.delete",
+      "path": "/user-todo-lists/:id",
+      "handler": "user-todo-list.delete",
       "config": {
         "policies": []
       }

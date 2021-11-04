@@ -47,7 +47,7 @@ const AddTodoForm: React.FC<Props> = ({
         <div className="w-full mt-4 md:ml-2 md:mt-0">
           <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" >Time</label>
           <input
-            type="datetime-local"
+            type="time"
             id="date"
             name="date"
             min={minDateValue}
